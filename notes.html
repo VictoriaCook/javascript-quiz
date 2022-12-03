@@ -1,0 +1,35 @@
+Plan
+
+1. Create permanent elements
+    View high scores link to separate HTML page
+    Timer display
+2. Create landing page
+    H1 Coding Quiz Challenge
+    P text 
+    Start Quiz button
+3. Create timer
+    Create 60 seconds timer and input display
+4. Create function that runs when Start Quiz button is clicked
+    Start timer function
+    New elements function
+    Run quiz function
+5. Create function for new quiz elements:
+    H1 for question
+    4 buttons for responses
+    Correct / wrong display (display: none in CSS which changes depending on result)
+6. Create function to populate with each question  
+    For loop iterating through object containing questions and answers
+        Display question in h1, choices in buttons     
+        On click: 
+            If (button clicked == answer property), show correct alert, else show wrong alert and subtract 10 seconds from timer
+    If all questions have shown OR || timer is at 0:
+        Display:    
+            All done in h1
+            Remove buttons
+            P text stating score (calculated as the number of seconds remaining)
+            Input to submit initials with a submit button
+            Run submit button function when clicked
+7. Create function for submit button
+    When submit button is clicked, save initials input and scores to local storage
+    Link to separate html file where local storage scores are shown
+    Buttons to go back and to clear high scores (delete from local storage)
