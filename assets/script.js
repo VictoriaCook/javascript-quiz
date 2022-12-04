@@ -19,8 +19,13 @@ timer.appendChild(timeDisplay);
 timeDisplay.innerHTML = 'Time: 0';
 var secondsLeft = 75;
 
-// Set up score variable
+// Set up score variables
 let score
+let initials
+let storedScore = {
+    name: initials.value,
+    finalScore: score,
+}
 
 // Set up array of objects for quiz content
 
@@ -144,26 +149,27 @@ function showScore() {
     titleDisplay.innerHTML = 'All done!';
     const scoreDisplay = document.createElement('p');
     scoreDisplay.innerHTML = 'Your final score is ' + score;
-    const initialsText = document.createElement('form');
+    const createForm = document.createElement('form');
     const labelText = document.createElement('label');
     const inputDisplay = document.createElement('input');
     const submitDisplay = document.createElement('input');
     labelText.innerHTML = 'Enter initials: ';
-    inputDisplay.attribute = 'type=text';
-    submitDisplay.attribute = 'type=submit';
-    initialsText.appendChild(labelText);
-    initialsText.appendChild(inputDisplay);
-    initialsText.appendChild(submitDisplay);
-    quiz.append(scoreDisplay, initialsText);
+    inputDisplay.setAttribute = 'type=text';
+    submitDisplay.setAttribute = 'type=submit';
+    createForm.appendChild(labelText);
+    createForm.appendChild(inputDisplay);
+    createForm.appendChild(submitDisplay);
+    quiz.append(scoreDisplay, createForm);
 }
 
 
 // Create submit functionality with local storage
 
 const submitScore = () => {
-
+    // need to collect input and define as initials
+    localStorage.setItem('storedScore', JSON.stringify(storedScore));
 }
 
-//      When submit button is clicked, save initials input and scores to local storage
+//     When submit button is clicked, save initials input and scores to local storage
 //     Link to separate html file where local storage scores are shown (ranked from lowest number to highest number)
 //     Buttons to go back and to clear high scores (delete from local storage)
