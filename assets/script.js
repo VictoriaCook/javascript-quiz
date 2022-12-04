@@ -24,7 +24,7 @@ let score
 let initials
 let storedScore = {
     name: initials.value,
-    finalScore: score,
+    finalScore: score.value,
 }
 
 // Set up array of objects for quiz content
