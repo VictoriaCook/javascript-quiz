@@ -19,6 +19,9 @@ timer.appendChild(timeDisplay);
 timeDisplay.innerHTML = 'Time: 0';
 var secondsLeft = 75;
 
+// Set up score variable
+let score
+
 // Set up array of objects for quiz content
 
 const q1 = {
@@ -122,14 +125,44 @@ function runQuiz() {
     // how to show wrong / right message? with css?
 }}
 
-// Create results functionality
+// Create score calculation and page
 
-function getScore() {
-    if 
+function showScore() {
+    // calculate score
+    if (secondsLeft === 0 || secondsLeft == 'negative number') {
+        score = 0;
+    }
+    if ('all questions have shown') {
+        score = secondsLeft;
+    }
+
+    // remove previous buttons
+    const allButtons = document.querySelectorAll('button');
+    allButtons.remove();
+
+    // show score page
+    titleDisplay.innerHTML = 'All done!';
+    const scoreDisplay = document.createElement('p');
+    scoreDisplay.innerHTML = 'Your final score is ' + score;
+    const initialsText = document.createElement('form');
+    const labelText = document.createElement('label');
+    const inputDisplay = document.createElement('input');
+    const submitDisplay = document.createElement('input');
+    labelText.innerHTML = 'Enter initials: ';
+    inputDisplay.attribute = 'type=text';
+    submitDisplay.attribute = 'type=submit';
+    initialsText.appendChild(labelText);
+    initialsText.appendChild(inputDisplay);
+    initialsText.appendChild(submitDisplay);
+    quiz.append(scoreDisplay, initialsText);
 }
 
 
 // Create submit functionality with local storage
+
+const submitScore = () => {
+
+}
 
 //      When submit button is clicked, save initials input and scores to local storage
 //     Link to separate html file where local storage scores are shown (ranked from lowest number to highest number)
