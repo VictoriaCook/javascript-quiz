@@ -2,7 +2,7 @@
 
 const titleDisplay = document.createElement('h1');
 const introDisplay = document.createElement('p');
-p.id = 'intro'
+introDisplay.id = 'intro'
 const button = document.createElement('button');
 button.id = 'initial-button'
 const quiz = document.getElementById('content');
@@ -57,6 +57,9 @@ const questionsArray = [q1, q2, q3, q4, q5];
 
 function startQuizClick() {
     // insert series of functions here
+    countdown();
+    buildQuiz();
+    getResult();
 }
 
 // Create timer function
@@ -78,23 +81,34 @@ function countdown() {
 
 function buildQuiz() {
     // remove intro para
-    const initialP = getElementById('intro');
+    const initialP = document.getElementById('intro');
     initialP.remove();
+    
     // remove initial button
-    const initialB = getElementById('initial-button');
+    const initialB = document.getElementById('initial-button');
     initialB.remove();
+    
     // for loop to create four buttons
-    button.id = button.i.choices[0];
+    for (let i = 0; i < 4; i++) {
+        button;
+        button.id = i;
+        button.addEventListener('click', getResult());
+        quiz.appendChild(button);
+    }
     // for loop to populate content
-    titleDisplay.innerHTML = q1.title;
+    for (let x = 0; x < questionsArray.length; x++) {
+        titleDisplay.innerHTML = questionsArray[x].title;
+        button1 = document.getElementById('0');
+        = questionsArray[x].choices[0];
+
+    }
     
 }
 
-// H1 for question
-// 4 buttons for responses
-
 // Create quiz functionality
 
+function getResult() {
 
+}
 
 // Create submit button functionality
