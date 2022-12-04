@@ -52,14 +52,17 @@ const q5 = {
 }
 
 const questionsArray = [q1, q2, q3, q4, q5];
+const questionNumber = questionsArray[0].title;
+const responseNumber = questionsArray[0].choices[0];
 
 // Quiz functionality from here
 
-function startQuizClick() {
-    // insert series of functions here
+startButton.addEventListener('click', initQuiz());
+
+function initQuiz() {
     countdown();
     buildQuiz();
-    getResult();
+    runQuiz();
 }
 
 // Create timer function
@@ -92,20 +95,42 @@ function buildQuiz() {
     for (let i = 0; i < 4; i++) {
         createButton = document.createElement('button');
         createButton.id = 'buttonId'+i;
-        createButton.addEventListener('click', getResult());
+        // createButton.addEventListener('click', runQuiz());
         quiz.appendChild(createButton);
     }
-
-    // carousel to populate content?
-    
 }
-
-// buildQuiz();
 
 // Create quiz functionality
 
-function getResult() {
+function runQuiz() {
+   // populate quiz content from array
+    for (let i = 0; i < questionsArray.length; i++) {
+    titleDisplay.innerHTML = questionsArray[i].title;
+    buttonId0 = document.getElementById('button0');
+    buttonId0.innerHTML = questionsArray[i].choices[0];
+    buttonId1 = document.getElementById('buttonId1');
+    buttonId1.innerHTML = questionsArray[i].choices[1];
+    buttonId2 = document.getElementById('buttonId2');
+    buttonId2.innerHTML = questionsArray[i].choices[2];
+    buttonId3 = document.getElementById('buttonId3');
+    buttonId3.innerHTML = questionsArray[i].choices[3];
+    
+    // remove seconds if selected wrong answer
+    if ('what was clicked on???' !== questionsArray[i].answer) {
+        secondsLeft - 10000
+    }
+    // how to show wrong / right message? with css?
+}}
 
+// Create results functionality
+
+function getScore() {
+    if 
 }
 
-// Create submit button functionality
+
+// Create submit functionality with local storage
+
+//      When submit button is clicked, save initials input and scores to local storage
+//     Link to separate html file where local storage scores are shown (ranked from lowest number to highest number)
+//     Buttons to go back and to clear high scores (delete from local storage)
