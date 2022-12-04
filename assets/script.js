@@ -3,13 +3,13 @@
 const titleDisplay = document.createElement('h1');
 const introDisplay = document.createElement('p');
 introDisplay.id = 'intro'
-const button = document.createElement('button');
-button.id = 'initial-button'
+const startButton = document.createElement('button');
+startButton.id = 'initial-button'
 const quiz = document.getElementById('content');
-quiz.append(titleDisplay, introDisplay, button);
+quiz.append(titleDisplay, introDisplay, startButton);
 titleDisplay.innerHTML = 'Coding Quiz Challenge';
 introDisplay.innerHTML = 'Try to answer the following code-related questions within the time limit. <br> Keep in mind that incorrect answers will penalise your score/time by ten seconds!';
-button.innerHTML = 'Start Quiz';
+startButton.innerHTML = 'Start Quiz';
 
 // Set up timer div
 
@@ -90,20 +90,17 @@ function buildQuiz() {
     
     // for loop to create four buttons
     for (let i = 0; i < 4; i++) {
-        button;
-        button.id = i;
-        button.addEventListener('click', getResult());
-        quiz.appendChild(button);
+        createButton = document.createElement('button');
+        createButton.id = 'buttonId'+i;
+        createButton.addEventListener('click', getResult());
+        quiz.appendChild(createButton);
     }
-    // for loop to populate content
-    for (let x = 0; x < questionsArray.length; x++) {
-        titleDisplay.innerHTML = questionsArray[x].title;
-        button1 = document.getElementById('0');
-        = questionsArray[x].choices[0];
 
-    }
+    // carousel to populate content?
     
 }
+
+// buildQuiz();
 
 // Create quiz functionality
 
