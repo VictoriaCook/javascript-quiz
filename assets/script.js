@@ -20,7 +20,7 @@ timeDisplay.innerHTML = 'Time: 0';
 var secondsLeft = 75;
 
 // Set up score variables
-// let score
+let score = 0;
 // let initials
 // let storedScore = {
 //     name: initials.value,
@@ -75,7 +75,7 @@ function countdown() {
     
         if(secondsLeft === 0) {
           clearInterval(timerInterval);
-        //   endQuiz();
+          endQuiz();
         }
     
       }, 1000);
@@ -115,22 +115,20 @@ function initQuiz() {
     buttonId3.innerHTML = questionsArray[questionNumber].choices[3];
 }
 
-// Create quiz functionality, triggered by a click event on any multiple choice button
-
-// allButtons = document.querySelectorAll('button');
-// allButtons.addEventListener('click', ); 
+// Create quiz functionality triggered by a click event on any multiple choice button
 
 function showQuestions(e) {
     // remove seconds if user selected the wrong answer
     if (e.target.innerHTML !== questionsArray[questionNumber].answer) {
         secondsLeft = secondsLeft - 10; // can also do 'secondsLeft -= 10'
-        // else 'if correct', increment score here
+    } else {
+        score++;
     }
     
     // populate quiz content from array
     questionNumber++ 
-    if (questionNumber > questionsArray.length) {
-        // endQuiz();
+    if (questionNumber >= questionsArray.length) {
+        endQuiz();
     } else { 
         titleDisplay.innerHTML = questionsArray[questionNumber].title;
         buttonId0 = document.getElementById('buttonId0');
@@ -149,28 +147,16 @@ function showQuestions(e) {
 // Create end quiz function
 
 function endQuiz() {
-    
-}
-
-// Create score calculation and page
-
-function calculateScore() {
-    // calculate score
-    if (secondsLeft <= 0) {
-        score = 0;
-    }
-    if ('how to check whether all questions have been shown?') {
-        score = secondsLeft;
-    }
-
     // remove previous buttons
-    const allButtons = document.querySelectorAll('button');
-    allButtons.remove();
+    buttonId0.remove();
+    buttonId1.remove();
+    buttonId2.remove();
+    buttonId3.remove();
 
-    // set up show score page. put this into end Quiz function and just keep this function as calculating the score
+    // set up quiz result page
     titleDisplay.innerHTML = 'All done!';
     const scoreDisplay = document.createElement('p');
-    scoreDisplay.innerHTML = 'Your final score is ' + score;
+    scoreDisplay.innerHTML = 'Your final score is ' + score + '/5!';
     const createForm = document.createElement('form');
     const labelText = document.createElement('label');
     const inputDisplay = document.createElement('input');
