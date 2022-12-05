@@ -189,6 +189,7 @@ function calculateScore() {
 
 // const submitScore = submitDisplay.addEventListener('click', () => {
 // // need to collect user input and define as initials
+// need to e.prevent.default to stop form being 'submitted'
 // localStorage.setItem('storedScore', JSON.stringify(storedScore));
 // });
 
