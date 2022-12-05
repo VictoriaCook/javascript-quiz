@@ -170,6 +170,10 @@ const submitScore = () => {
     localStorage.setItem('storedScore', JSON.stringify(storedScore));
 }
 
-//     When submit button is clicked, save initials input and scores to local storage
-//     Link to separate html file where local storage scores are shown (ranked from lowest number to highest number)
-//     Buttons to go back and to clear high scores (delete from local storage)
+// When submit button is clicked, 
+// save initials input and scores to local storage
+// Link to separate html file where local storage scores are shown 
+
+// Create separate html file to show scores 
+// Ranked from lowest number to highest number (array sort?)
+// Include buttons to go back and to clear high scores (delete from local storage)
