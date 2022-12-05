@@ -60,18 +60,11 @@ const q5 = {
 }
 
 const questionsArray = [q1, q2, q3, q4, q5];
-const questionNumber = questionsArray[0].title;
-const responseNumber = questionsArray[0].choices[0];
+let questionNumber = 0;
 
 // Quiz functionality from here
 
 startButton.addEventListener('click', initQuiz());
-
-function initQuiz() {
-    countdown();
-    buildQuiz();
-    runQuiz();
-}
 
 // Create timer function
 
@@ -90,7 +83,10 @@ function countdown() {
 
 // Create quiz elements
 
-function buildQuiz() {
+function initQuiz() {
+    // start timer
+    countdown();
+    
     // remove intro para
     const initialP = document.getElementById('intro');
     initialP.remove();
@@ -103,32 +99,43 @@ function buildQuiz() {
     for (let i = 0; i < 4; i++) {
         createButton = document.createElement('button');
         createButton.id = 'buttonId'+i;
-        // createButton.addEventListener('click', runQuiz());
+        createButton.addEventListener('click', runQuiz()); // added event listener for click on each multiple choice button
         quiz.appendChild(createButton);
     }
+
+    // populate with q1
+    titleDisplay.innerHTML = questionsArray[questionNumber].title;
+    buttonId0 = document.getElementById('button0');
+    buttonId0.innerHTML = questionsArray[questionNumber].choices[0];
+    buttonId1 = document.getElementById('buttonId1');
+    buttonId1.innerHTML = questionsArray[questionNumber].choices[1];
+    buttonId2 = document.getElementById('buttonId2');
+    buttonId2.innerHTML = questionsArray[questionNumber].choices[2];
+    buttonId3 = document.getElementById('buttonId3');
+    buttonId3.innerHTML = questionsArray[questionNumber].choices[3];
 }
 
-// Create quiz functionality
+// Create quiz functionality. This needs to be triggered by a click event on a multiple choice button
 
 function runQuiz() {
    // populate quiz content from array
-    for (let i = 0; i < questionsArray.length; i++) {
-    titleDisplay.innerHTML = questionsArray[i].title;
+   questionNumber = questionNumber++ 
+   titleDisplay.innerHTML = questionsArray[questionNumber].title;
     buttonId0 = document.getElementById('button0');
-    buttonId0.innerHTML = questionsArray[i].choices[0];
+    buttonId0.innerHTML = questionsArray[questionNumber].choices[0];
     buttonId1 = document.getElementById('buttonId1');
-    buttonId1.innerHTML = questionsArray[i].choices[1];
+    buttonId1.innerHTML = questionsArray[questionNumber].choices[1];
     buttonId2 = document.getElementById('buttonId2');
-    buttonId2.innerHTML = questionsArray[i].choices[2];
+    buttonId2.innerHTML = questionsArray[questionNumber].choices[2];
     buttonId3 = document.getElementById('buttonId3');
-    buttonId3.innerHTML = questionsArray[i].choices[3];
+    buttonId3.innerHTML = questionsArray[questionNumber].choices[3];
     
     // remove seconds if selected wrong answer
-    if ('what was clicked on???' !== questionsArray[i].answer) {
+    if ('how to identify which button was clicked? target.innerHTML?' !== questionsArray[questionNumber].answer) {
         secondsLeft - 10000
     }
     // how to show wrong / right message? with css?
-}}
+}
 
 // Create score calculation and page
 
