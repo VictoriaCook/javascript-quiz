@@ -99,13 +99,13 @@ function initQuiz() {
     for (let i = 0; i < 4; i++) {
         createButton = document.createElement('button');
         createButton.id = 'buttonId'+i;
-        createButton.addEventListener('click', runQuiz()); // added event listener for click on each multiple choice button
+        // createButton.addEventListener('click', runQuiz()); added event listener for click on each multiple choice button
         quiz.appendChild(createButton);
     }
 
     // populate with q1
     titleDisplay.innerHTML = questionsArray[questionNumber].title;
-    buttonId0 = document.getElementById('button0');
+    buttonId0 = document.getElementById('buttonId0');
     buttonId0.innerHTML = questionsArray[questionNumber].choices[0];
     buttonId1 = document.getElementById('buttonId1');
     buttonId1.innerHTML = questionsArray[questionNumber].choices[1];
@@ -115,13 +115,14 @@ function initQuiz() {
     buttonId3.innerHTML = questionsArray[questionNumber].choices[3];
 }
 
-// Create quiz functionality. This needs to be triggered by a click event on a multiple choice button
+// Create quiz functionality, triggered by a click event on any multiple choice button
 
-function runQuiz() {
-   // populate quiz content from array
+allButtons = document.querySelectorAll('button');
+allButtons.addEventListener('click', (e) => {
+    // populate quiz content from array
    questionNumber = questionNumber++ 
    titleDisplay.innerHTML = questionsArray[questionNumber].title;
-    buttonId0 = document.getElementById('button0');
+    buttonId0 = document.getElementById('buttonId0');
     buttonId0.innerHTML = questionsArray[questionNumber].choices[0];
     buttonId1 = document.getElementById('buttonId1');
     buttonId1.innerHTML = questionsArray[questionNumber].choices[1];
@@ -130,12 +131,12 @@ function runQuiz() {
     buttonId3 = document.getElementById('buttonId3');
     buttonId3.innerHTML = questionsArray[questionNumber].choices[3];
     
-    // remove seconds if selected wrong answer
-    if ('how to identify which button was clicked? target.innerHTML?' !== questionsArray[questionNumber].answer) {
+    // remove seconds if user selected the wrong answer
+    if (e.target.innerHTML !== questionsArray[questionNumber].answer) {
         secondsLeft - 10000
     }
-    // how to show wrong / right message? with css?
-}
+    // how to show wrong / right message? with css display: none?
+}); 
 
 // Create score calculation and page
 
@@ -152,7 +153,7 @@ function showScore() {
     const allButtons = document.querySelectorAll('button');
     allButtons.remove();
 
-    // show score page
+    // set up show score page
     titleDisplay.innerHTML = 'All done!';
     const scoreDisplay = document.createElement('p');
     scoreDisplay.innerHTML = 'Your final score is ' + score;
@@ -172,10 +173,11 @@ function showScore() {
 
 // Create submit functionality with local storage
 
-const submitScore = () => {
-    // need to collect input and define as initials
-    localStorage.setItem('storedScore', JSON.stringify(storedScore));
-}
+const submitScore = submitDisplay.addEventListener('click', () => {
+// need to collect user input and define as initials
+localStorage.setItem('storedScore', JSON.stringify(storedScore));
+});
+
 
 // When submit button is clicked, 
 // save initials input and scores to local storage
