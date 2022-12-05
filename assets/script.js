@@ -160,10 +160,10 @@ function endQuiz() {
     const createForm = document.createElement('form');
     const labelText = document.createElement('label');
     const inputDisplay = document.createElement('input');
-    const submitDisplay = document.createElement('input');
+    const submitDisplay = document.createElement('input'); 
     labelText.innerHTML = 'Enter initials: ';
-    inputDisplay.setAttribute = 'type=text';
-    submitDisplay.setAttribute = 'type=submit';
+    inputDisplay.setAttribute('type', 'text');
+    submitDisplay.setAttribute('type', 'submit');
     createForm.appendChild(labelText);
     createForm.appendChild(inputDisplay);
     createForm.appendChild(submitDisplay);
