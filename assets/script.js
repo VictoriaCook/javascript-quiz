@@ -142,10 +142,10 @@ allButtons.addEventListener('click', (e) => {
 
 function showScore() {
     // calculate score
-    if (secondsLeft === 0 || secondsLeft == 'negative number') {
+    if (secondsLeft <= 0) {
         score = 0;
     }
-    if ('all questions have shown') {
+    if ('how to check whether all questions have been shown?') {
         score = secondsLeft;
     }
 
