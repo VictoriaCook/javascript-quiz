@@ -1,0 +1,28 @@
+#content {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+
+a {
+    color: hotpink;
+    text-decoration: none;
+}
+
+#timer {
+    float: right;
+    /* display: inline-block; */
+}
+
+button {
+    background-color: blueviolet;
+    color: white;
+    padding: 1.5%;
+    border-radius: 10px;
+    border: none; 
+}
+
+/* - [ ]  centre quiz div
+- [ ]  centre buttons and make their backgrounds purple
+- [ ]  change view high scores font colour to pink
+- [ ]  float timer to the right (in line with view high score) */
