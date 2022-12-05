@@ -153,7 +153,7 @@ function showScore() {
     const allButtons = document.querySelectorAll('button');
     allButtons.remove();
 
-    // set up show score page
+    // set up show score page OR put in HTML div and change display to show
     titleDisplay.innerHTML = 'All done!';
     const scoreDisplay = document.createElement('p');
     scoreDisplay.innerHTML = 'Your final score is ' + score;
