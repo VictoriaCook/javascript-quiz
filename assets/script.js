@@ -20,12 +20,12 @@ timeDisplay.innerHTML = 'Time: 0';
 var secondsLeft = 75;
 
 // Set up score variables
-let score
-let initials
-let storedScore = {
-    name: initials.value,
-    finalScore: score.value,
-}
+let score = 0;
+// let initials
+// let storedScore = {
+//     name: initials.value,
+//     finalScore: score.value,
+// }
 
 // Set up array of objects for quiz content
 
@@ -60,18 +60,11 @@ const q5 = {
 }
 
 const questionsArray = [q1, q2, q3, q4, q5];
-const questionNumber = questionsArray[0].title;
-const responseNumber = questionsArray[0].choices[0];
+let questionNumber = 0;
 
 // Quiz functionality from here
 
-startButton.addEventListener('click', initQuiz());
-
-function initQuiz() {
-    countdown();
-    buildQuiz();
-    runQuiz();
-}
+startButton.addEventListener('click', initQuiz); // this is a callback function. need to let the event listener run the function
 
 // Create timer function
 
@@ -80,9 +73,9 @@ function countdown() {
         secondsLeft--;
         timeDisplay.innerHTML = 'Time: ' + secondsLeft;
     
-        if(secondsLeft === 0) {
+        if(secondsLeft <= 0) {
           clearInterval(timerInterval);
-          // Show scores page
+          endQuiz();
         }
     
       }, 1000);
@@ -90,7 +83,10 @@ function countdown() {
 
 // Create quiz elements
 
-function buildQuiz() {
+function initQuiz() {
+    // start timer
+    countdown();
+    
     // remove intro para
     const initialP = document.getElementById('intro');
     initialP.remove();
@@ -103,59 +99,73 @@ function buildQuiz() {
     for (let i = 0; i < 4; i++) {
         createButton = document.createElement('button');
         createButton.id = 'buttonId'+i;
-        // createButton.addEventListener('click', runQuiz());
+        createButton.classList.add('mc-buttons');
+        createButton.addEventListener('click', showQuestions); 
         quiz.appendChild(createButton);
     }
+
+    // populate with q1
+    titleDisplay.innerHTML = questionsArray[questionNumber].title;
+    buttonId0 = document.getElementById('buttonId0');
+    buttonId0.innerHTML = questionsArray[questionNumber].choices[0];
+    buttonId1 = document.getElementById('buttonId1');
+    buttonId1.innerHTML = questionsArray[questionNumber].choices[1];
+    buttonId2 = document.getElementById('buttonId2');
+    buttonId2.innerHTML = questionsArray[questionNumber].choices[2];
+    buttonId3 = document.getElementById('buttonId3');
+    buttonId3.innerHTML = questionsArray[questionNumber].choices[3];
 }
 
-// Create quiz functionality
+// Create quiz functionality triggered by a click event on any multiple choice button
 
-function runQuiz() {
-   // populate quiz content from array
-    for (let i = 0; i < questionsArray.length; i++) {
-    titleDisplay.innerHTML = questionsArray[i].title;
-    buttonId0 = document.getElementById('button0');
-    buttonId0.innerHTML = questionsArray[i].choices[0];
-    buttonId1 = document.getElementById('buttonId1');
-    buttonId1.innerHTML = questionsArray[i].choices[1];
-    buttonId2 = document.getElementById('buttonId2');
-    buttonId2.innerHTML = questionsArray[i].choices[2];
-    buttonId3 = document.getElementById('buttonId3');
-    buttonId3.innerHTML = questionsArray[i].choices[3];
+function showQuestions(e) {
+    // remove seconds if user selected the wrong answer
+    if (e.target.innerHTML !== questionsArray[questionNumber].answer) {
+        secondsLeft = secondsLeft - 10; // can also do 'secondsLeft -= 10'
+    } else {
+        score++;
+    }
     
-    // remove seconds if selected wrong answer
-    if ('what was clicked on???' !== questionsArray[i].answer) {
-        secondsLeft - 10000
+    // populate quiz content from array
+    questionNumber++ 
+    if (questionNumber >= questionsArray.length) {
+        endQuiz();
+    } else { 
+        titleDisplay.innerHTML = questionsArray[questionNumber].title;
+        buttonId0 = document.getElementById('buttonId0');
+        buttonId0.innerHTML = questionsArray[questionNumber].choices[0];
+        buttonId1 = document.getElementById('buttonId1');
+        buttonId1.innerHTML = questionsArray[questionNumber].choices[1];
+        buttonId2 = document.getElementById('buttonId2');
+        buttonId2.innerHTML = questionsArray[questionNumber].choices[2];
+        buttonId3 = document.getElementById('buttonId3');
+        buttonId3.innerHTML = questionsArray[questionNumber].choices[3];
     }
-    // how to show wrong / right message? with css?
-}}
+    
+    // how to show wrong / right message? with css display: none?
+}
 
-// Create score calculation and page
+// Create end quiz function
 
-function showScore() {
-    // calculate score
-    if (secondsLeft === 0 || secondsLeft == 'negative number') {
-        score = 0;
-    }
-    if ('all questions have shown') {
-        score = secondsLeft;
-    }
-
+function endQuiz() {
     // remove previous buttons
-    const allButtons = document.querySelectorAll('button');
-    allButtons.remove();
+    buttonId0.remove();
+    buttonId1.remove();
+    buttonId2.remove();
+    buttonId3.remove();
 
-    // show score page
+    // set up quiz result page
     titleDisplay.innerHTML = 'All done!';
     const scoreDisplay = document.createElement('p');
-    scoreDisplay.innerHTML = 'Your final score is ' + score;
+    scoreDisplay.innerHTML = 'Your final score is ' + score + '/5!';
     const createForm = document.createElement('form');
     const labelText = document.createElement('label');
     const inputDisplay = document.createElement('input');
-    const submitDisplay = document.createElement('input');
+    const submitDisplay = document.createElement('input'); 
+    submitDisplay.id = 'submit-button';
     labelText.innerHTML = 'Enter initials: ';
-    inputDisplay.setAttribute = 'type=text';
-    submitDisplay.setAttribute = 'type=submit';
+    inputDisplay.setAttribute('type', 'text');
+    submitDisplay.setAttribute('type', 'submit');
     createForm.appendChild(labelText);
     createForm.appendChild(inputDisplay);
     createForm.appendChild(submitDisplay);
@@ -165,10 +175,12 @@ function showScore() {
 
 // Create submit functionality with local storage
 
-const submitScore = () => {
-    // need to collect input and define as initials
-    localStorage.setItem('storedScore', JSON.stringify(storedScore));
-}
+// const submitScore = submitDisplay.addEventListener('click', () => {
+// // need to collect user input and define as initials
+// need to e.prevent.default to stop form being 'submitted'
+// localStorage.setItem('storedScore', JSON.stringify(storedScore));
+// });
+
 
 // When submit button is clicked, 
 // save initials input and scores to local storage
