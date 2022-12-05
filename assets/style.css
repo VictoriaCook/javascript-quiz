@@ -1,6 +1,6 @@
 #content, #scores-page {
     margin: auto;
-    width: 60%;
+    width: 50%;
     text-align: center;
 }
 
@@ -25,6 +25,11 @@ button {
     border-radius: 8px;
     border: none; 
     margin: 0.5%;
+    width: 200px;
+}
+
+.mc-buttons {
+    display: block;
 }
 
 #submit-button {

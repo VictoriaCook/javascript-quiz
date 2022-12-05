@@ -99,6 +99,7 @@ function initQuiz() {
     for (let i = 0; i < 4; i++) {
         createButton = document.createElement('button');
         createButton.id = 'buttonId'+i;
+        createButton.classList.add('mc-buttons');
         createButton.addEventListener('click', showQuestions); 
         quiz.appendChild(createButton);
     }
