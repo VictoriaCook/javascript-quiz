@@ -73,7 +73,7 @@ function countdown() {
         secondsLeft--;
         timeDisplay.innerHTML = 'Time: ' + secondsLeft;
     
-        if(secondsLeft === 0) {
+        if(secondsLeft <= 0) {
           clearInterval(timerInterval);
           endQuiz();
         }
@@ -161,6 +161,7 @@ function endQuiz() {
     const labelText = document.createElement('label');
     const inputDisplay = document.createElement('input');
     const submitDisplay = document.createElement('input'); 
+    submitDisplay.id = 'submit-button';
     labelText.innerHTML = 'Enter initials: ';
     inputDisplay.setAttribute('type', 'text');
     submitDisplay.setAttribute('type', 'submit');
