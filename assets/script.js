@@ -75,7 +75,7 @@ function countdown() {
     
         if(secondsLeft === 0) {
           clearInterval(timerInterval);
-          // Run end quiz function here 
+        //   endQuiz();
         }
     
       }, 1000);
@@ -122,8 +122,6 @@ function initQuiz() {
 
 function showQuestions(e) {
     // remove seconds if user selected the wrong answer
-    console.log(e.target.innerHTML, questionsArray[questionNumber].answer);
-    
     if (e.target.innerHTML !== questionsArray[questionNumber].answer) {
         secondsLeft = secondsLeft - 10; // can also do 'secondsLeft -= 10'
         // else 'if correct', increment score here
@@ -131,25 +129,28 @@ function showQuestions(e) {
     
     // populate quiz content from array
     questionNumber++ 
-    // if {questionNumber > length, end quiz}, else populate ->
-   titleDisplay.innerHTML = questionsArray[questionNumber].title;
-    buttonId0 = document.getElementById('buttonId0');
-    buttonId0.innerHTML = questionsArray[questionNumber].choices[0];
-    buttonId1 = document.getElementById('buttonId1');
-    buttonId1.innerHTML = questionsArray[questionNumber].choices[1];
-    buttonId2 = document.getElementById('buttonId2');
-    buttonId2.innerHTML = questionsArray[questionNumber].choices[2];
-    buttonId3 = document.getElementById('buttonId3');
-    buttonId3.innerHTML = questionsArray[questionNumber].choices[3];
-    
+    if (questionNumber > questionsArray.length) {
+        // endQuiz();
+    } else { 
+        titleDisplay.innerHTML = questionsArray[questionNumber].title;
+        buttonId0 = document.getElementById('buttonId0');
+        buttonId0.innerHTML = questionsArray[questionNumber].choices[0];
+        buttonId1 = document.getElementById('buttonId1');
+        buttonId1.innerHTML = questionsArray[questionNumber].choices[1];
+        buttonId2 = document.getElementById('buttonId2');
+        buttonId2.innerHTML = questionsArray[questionNumber].choices[2];
+        buttonId3 = document.getElementById('buttonId3');
+        buttonId3.innerHTML = questionsArray[questionNumber].choices[3];
+    }
     
     // how to show wrong / right message? with css display: none?
 }
 
 // Create end quiz function
 
-// if timer runs out end quiz
-// if last question has been shown, end quiz
+function endQuiz() {
+    
+}
 
 // Create score calculation and page
 
