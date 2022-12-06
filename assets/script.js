@@ -29,7 +29,7 @@ var secondsLeft = 75;
 
 // Set up score variables
 let score = 0;
-// let initials
+let initials
 // let storedScore = {
 //     name: initials.value,
 //     finalScore: score.value,
@@ -189,6 +189,7 @@ function endQuiz() {
     const createForm = document.createElement('form');
     const labelText = document.createElement('label');
     const inputDisplay = document.createElement('input');
+    inputDisplay.id = 'input-initials';
     const submitDisplay = document.createElement('input'); 
     submitDisplay.id = 'submit-button';
     labelText.innerHTML = 'Enter initials: ';
@@ -210,7 +211,13 @@ function endQuiz() {
 
 function submitScore(e) {
     e.preventDefault();
-    console.log('clicked!');
+    // console.log('clicked!');
+    initials = document.getElementById('input-initials').value;
+    console.log(initials);
+    localStorage.setItem("initials", initials);
+    let scoreValue = score.toString();
+    localStorage.setItem("score", scoreValue);
+    console.log(scoreValue);
 }
 
 // // need to collect user input and define as initials
