@@ -189,8 +189,12 @@ function endQuiz() {
     const createForm = document.createElement('form');
     const labelText = document.createElement('label');
     const inputDisplay = document.createElement('input');
+    inputDisplay.id = 'input-initials';
     const submitDisplay = document.createElement('input'); 
     submitDisplay.id = 'submit-button';
+    // const addAnchor = document.createElement('a');
+    // submitDisplay.appendChild(addAnchor);
+    // addAnchor.setAttribute('href', '/scores.html'); // up to here re adding link to submit button
     labelText.innerHTML = 'Enter initials: ';
     inputDisplay.setAttribute('type', 'text');
     submitDisplay.setAttribute('type', 'submit');
@@ -198,22 +202,29 @@ function endQuiz() {
     createForm.appendChild(inputDisplay);
     createForm.appendChild(submitDisplay);
     quiz.append(scoreDisplay, createForm);
+
+    // set up event listener for a click on the submit button
+    // let submitButton = document.getElementById('submit-button');
+    // submitButton.addEventListener('click', submitScore);
+    submitDisplay.addEventListener('click', submitScore); // window.location.href = 'scores.html'
 }
 
 
 // Create submit functionality with local storage
 
-// const submitScore = submitDisplay.addEventListener('click', () => {
-// // need to collect user input and define as initials
-// need to e.prevent.default to stop form being 'submitted'
-// localStorage.setItem('storedScore', JSON.stringify(storedScore));
-// });
+function submitScore(e) {
+    e.preventDefault();
+    // console.log('clicked!');
+    let initials = document.getElementById('input-initials').value;
+    let scoreValue = score.toString();
+    // console.log(initials);
+    let highScore = {
+        initials ,
+        scoreValue ,
+    };
+    let existingHighScores = JSON.parse(localStorage.getItem('highscores')) || []; 
+    existingHighScores.push(highScore);
+    localStorage.setItem('highscores', JSON.stringify(existingHighScores));
+    window.location.href = 'scores.html'
+}
 
-
-// When submit button is clicked, 
-// save initials input and scores to local storage
-// Link to separate html file where local storage scores are shown 
-
-// Create separate html file to show scores 
-// Ranked from lowest number to highest number (array sort?)
-// Include buttons to go back and to clear high scores (delete from local storage)
