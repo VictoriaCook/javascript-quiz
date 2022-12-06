@@ -192,6 +192,9 @@ function endQuiz() {
     inputDisplay.id = 'input-initials';
     const submitDisplay = document.createElement('input'); 
     submitDisplay.id = 'submit-button';
+    // const addAnchor = document.createElement('a');
+    // submitDisplay.appendChild(addAnchor);
+    // addAnchor.setAttribute('href', '/scores.html'); // up to here re adding link to submit button
     labelText.innerHTML = 'Enter initials: ';
     inputDisplay.setAttribute('type', 'text');
     submitDisplay.setAttribute('type', 'submit');
@@ -203,7 +206,7 @@ function endQuiz() {
     // set up event listener for a click on the submit button
     // let submitButton = document.getElementById('submit-button');
     // submitButton.addEventListener('click', submitScore);
-    submitDisplay.addEventListener('click', submitScore);
+    submitDisplay.addEventListener('click', submitScore); // window.location.href = 'scores.html'
 }
 
 
@@ -211,6 +214,7 @@ function endQuiz() {
 
 function submitScore(e) {
     e.preventDefault();
+    window.location.href = 'scores.html'
     // console.log('clicked!');
     initials = document.getElementById('input-initials').value;
     console.log(initials);
@@ -224,10 +228,10 @@ function submitScore(e) {
 // Create function to populate score rankings
 
 function populateScoresPage() {
-    // sort first
+    // sort first from highest score to lowest score
     var initialsRank = localStorage.getItem("initials");
     var scoreRank = localStorage.getItem("scoreValue");
-    // for (let i = 0; i < stored.length; i++) {
+    // for loop to create p tags and populate with scores (let i = 0; i < variable.length; i++) {
     const rankDisplay = document.getElementById('ranking');
     createPara = document.createElement('p');
     rankDisplay.append(createPara);
