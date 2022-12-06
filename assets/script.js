@@ -213,19 +213,29 @@ function submitScore(e) {
     e.preventDefault();
     // console.log('clicked!');
     initials = document.getElementById('input-initials').value;
-    console.log(initials);
+    // console.log(initials);
     localStorage.setItem("initials", initials);
     let scoreValue = score.toString();
     localStorage.setItem("score", scoreValue);
-    console.log(scoreValue);
+    // console.log(scoreValue);
 }
 
-// // need to collect user input and define as initials
+// Create function to populate score rankings
+
+function populateScoresPage() {
+    // sort first
+    var initialsRank = JSON.parse(localStorage.getItem("initials"));
+    var scoreRank = JSON.parse(localStorage.getItem("scoreValue"));
+    // for (let i = 0; i < stored.length; i++) {
+        const rankDisplay = document.getElementById('ranking');
+        createPara = document.createElement('p');
+        rankDisplay.append(createPara);
+        createPara.innerHTML = initialsRank + ' - ' + scoreRank;
+}
+
+// add event listener for view high scores to also load scores on page
+
 // localStorage.setItem('storedScore', JSON.stringify(storedScore));
-
-
-// When submit button is clicked, 
-// save initials input and scores to local storage
 // Link to separate html file where local storage scores are shown 
 // Ranked from lowest number to highest number (array sort?)
-// Include buttons to go back and to clear high scores (delete from local storage)
+// Include functionality to clear high scores (delete from local storage)
