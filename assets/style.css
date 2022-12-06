@@ -54,7 +54,7 @@ button {
 }
 
 #correct-msg {
-    display: none;
+   display: none;
     margin: auto;
     width: 50%;
     font-style: italic;

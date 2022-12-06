@@ -13,6 +13,9 @@ startButton.innerHTML = 'Start Quiz';
 
 // Set up message div
 
+let incorrectMsgDisplay = document.getElementById('incorrect-msg');
+let correctMsgDisplay = document.getElementById('correct-msg');
+// document.getElementById('correct-msg').style.display = 'none'
 // const incorrectMsgDisplay = document.getElementById('incorrect-msg');
 // const correctMsgDisplay = document.getElementById('correct-msg');
 
@@ -124,17 +127,30 @@ function initQuiz() {
 // Create quiz functionality triggered by a click event on any multiple choice button
 
 function showQuestions(e) {
-    // remove seconds if user selected the wrong answer
+    // let correctMsgDisplay = document.getElementById('correct-msg');
+    // let incorrectMsgDisplay = document.getElementById('incorrect-msg');
+
+    // if user selected the wrong answer, remove seconds and show 'incorrect'
     if (e.target.innerHTML !== questionsArray[questionNumber].answer) {
         secondsLeft = secondsLeft - 10;
-        var incorrectMsgDisplay = document.getElementById('incorrect-msg');
         incorrectMsgDisplay.setAttribute("style", "display: block");
     
     } else {
-        var correctMsgDisplay = document.getElementById('correct-msg');
-        correctMsgDisplay.setAttribute("style", "display: block");
+        correctMsgDisplay.style.display = 'block';
+        //correctMsgDisplay.setAttribute("style", "display: block");
         score++;
     }
+    setTimeout(() => {
+        populateNextQuestion(); 
+    }, 1000);
+    
+}
+
+function populateNextQuestion() {
+    // let correctMsgDisplay = document.getElementById('correct-msg');
+    // let incorrectMsgDisplay = document.getElementById('incorrect-msg');
+    correctMsgDisplay.setAttribute("style", "display: none");
+    incorrectMsgDisplay.setAttribute("style", "display: none");
     
     // populate quiz content from array
     questionNumber++ 
@@ -150,8 +166,6 @@ function showQuestions(e) {
         buttonId2.innerHTML = questionsArray[questionNumber].choices[2];
         buttonId3 = document.getElementById('buttonId3');
         buttonId3.innerHTML = questionsArray[questionNumber].choices[3];
-        correctMsgDisplay.setAttribute("style", "display: none");
-        incorrectMsgDisplay.setAttribute("style", "display: none");
     }
 }
 
@@ -163,8 +177,8 @@ function endQuiz() {
     buttonId1.remove();
     buttonId2.remove();
     buttonId3.remove();
-    var incorrectMsgDisplay = document.getElementById('incorrect-msg');
-    var correctMsgDisplay = document.getElementById('correct-msg');
+    // let incorrectMsgDisplay = document.getElementById('incorrect-msg');
+    // let correctMsgDisplay = document.getElementById('correct-msg');
     correctMsgDisplay.remove();
     incorrectMsgDisplay.remove();
 
