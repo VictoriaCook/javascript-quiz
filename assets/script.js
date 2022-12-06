@@ -11,6 +11,11 @@ titleDisplay.innerHTML = 'Coding Quiz Challenge';
 introDisplay.innerHTML = 'Try to answer the following code-related questions within the time limit. <br> Keep in mind that incorrect answers will penalise your score/time by ten seconds!';
 startButton.innerHTML = 'Start Quiz';
 
+// Set up message div
+
+// const incorrectMsgDisplay = document.getElementById('incorrect-msg');
+// const correctMsgDisplay = document.getElementById('correct-msg');
+
 // Set up timer div
 
 const timeDisplay = document.createElement('p');
@@ -64,7 +69,7 @@ let questionNumber = 0;
 
 // Quiz functionality from here
 
-startButton.addEventListener('click', initQuiz); // this is a callback function. need to let the event listener run the function
+startButton.addEventListener('click', initQuiz);
 
 // Create timer function
 
@@ -121,11 +126,13 @@ function initQuiz() {
 function showQuestions(e) {
     // remove seconds if user selected the wrong answer
     if (e.target.innerHTML !== questionsArray[questionNumber].answer) {
-        secondsLeft = secondsLeft - 10; // can also do 'secondsLeft -= 10'
-        // const incorrectDisplay = document.createElement('h2');
-        // incorrectDisplay.innerHTML = 'Incorrect!'
-        // quiz.append(incorrectDisplay);
+        secondsLeft = secondsLeft - 10;
+        var incorrectMsgDisplay = document.getElementById('incorrect-msg');
+        incorrectMsgDisplay.setAttribute("style", "display: block");
+    
     } else {
+        var correctMsgDisplay = document.getElementById('correct-msg');
+        correctMsgDisplay.setAttribute("style", "display: block");
         score++;
     }
     
@@ -143,9 +150,9 @@ function showQuestions(e) {
         buttonId2.innerHTML = questionsArray[questionNumber].choices[2];
         buttonId3 = document.getElementById('buttonId3');
         buttonId3.innerHTML = questionsArray[questionNumber].choices[3];
+        correctMsgDisplay.setAttribute("style", "display: none");
+        incorrectMsgDisplay.setAttribute("style", "display: none");
     }
-    
-    // how to show wrong / right message? with css display: none?
 }
 
 // Create end quiz function
@@ -156,6 +163,10 @@ function endQuiz() {
     buttonId1.remove();
     buttonId2.remove();
     buttonId3.remove();
+    var incorrectMsgDisplay = document.getElementById('incorrect-msg');
+    var correctMsgDisplay = document.getElementById('correct-msg');
+    correctMsgDisplay.remove();
+    incorrectMsgDisplay.remove();
 
     // set up quiz result page
     titleDisplay.innerHTML = 'All done!';

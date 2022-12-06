@@ -41,3 +41,25 @@ button {
     border: none; 
     margin: 1%;
 }
+
+#incorrect-msg {
+    display: none;
+    margin: auto;
+    width: 50%;
+    font-style: italic;
+    color: grey;
+    font-size: 23px;
+    border-top: solid;
+    margin-top: 5%;
+}
+
+#correct-msg {
+    display: none;
+    margin: auto;
+    width: 50%;
+    font-style: italic;
+    color: grey;
+    font-size: 23px;
+    border-top: solid;
+    margin-top: 5%;
+}
