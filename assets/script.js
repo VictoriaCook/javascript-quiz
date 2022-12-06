@@ -122,6 +122,9 @@ function showQuestions(e) {
     // remove seconds if user selected the wrong answer
     if (e.target.innerHTML !== questionsArray[questionNumber].answer) {
         secondsLeft = secondsLeft - 10; // can also do 'secondsLeft -= 10'
+        // const incorrectDisplay = document.createElement('h2');
+        // incorrectDisplay.innerHTML = 'Incorrect!'
+        // quiz.append(incorrectDisplay);
     } else {
         score++;
     }
