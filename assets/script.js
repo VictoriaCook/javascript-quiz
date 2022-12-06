@@ -29,7 +29,7 @@ var secondsLeft = 75;
 
 // Set up score variables
 let score = 0;
-let initials
+// let initials
 // let storedScore = {
 //     name: initials.value,
 //     finalScore: score.value,
@@ -214,31 +214,17 @@ function endQuiz() {
 
 function submitScore(e) {
     e.preventDefault();
-    window.location.href = 'scores.html'
     // console.log('clicked!');
-    initials = document.getElementById('input-initials').value;
-    console.log(initials);
-    localStorage.setItem("initials", initials);
+    let initials = document.getElementById('input-initials').value;
     let scoreValue = score.toString();
-    localStorage.setItem("score", scoreValue);
-    console.log(scoreValue);
-    populateScoresPage();
+    // console.log(initials);
+    let highScore = {
+        initials ,
+        scoreValue ,
+    };
+    let existingHighScores = JSON.parse(localStorage.getItem('highscores')) || []; 
+    existingHighScores.push(highScore);
+    localStorage.setItem('highscores', JSON.stringify(existingHighScores));
+    window.location.href = 'scores.html'
 }
 
-// Create function to populate score rankings
-
-function populateScoresPage() {
-    // sort first from highest score to lowest score
-    var initialsRank = localStorage.getItem("initials");
-    var scoreRank = localStorage.getItem("scoreValue");
-    // for loop to create p tags and populate with scores (let i = 0; i < variable.length; i++) {
-    const rankDisplay = document.getElementById('ranking');
-    createPara = document.createElement('p');
-    rankDisplay.append(createPara);
-    createPara.innerHTML = initialsRank + ' - ' + scoreRank;
-}
-
-// add event listener for view high scores to also load scores on page
-// Link to separate html file where local storage scores are shown 
-// Ranked from lowest number to highest number (array sort?)
-// Include functionality to clear high scores (delete from local storage) localStorage.clear();
