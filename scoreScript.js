@@ -18,7 +18,7 @@ rankDisplay.appendChild(orderedListEl);
 // create delete local storage functionality and remove from display
 
 const deleteStored = document.getElementById('clear-high-scores');
-// deleteStored.addEventListener('click', deleteScores);
+deleteStored.addEventListener('click', deleteScores);
 
 function deleteScores() {
     localStorage.clear();
