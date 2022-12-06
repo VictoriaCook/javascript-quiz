@@ -169,7 +169,8 @@ function endQuiz() {
     correctMsgDisplay.remove();
     incorrectMsgDisplay.remove();
 
-    // set up quiz result page
+    // set up quiz result page. wrap in if statement? if score display != null?
+    
     titleDisplay.innerHTML = 'All done!';
     const scoreDisplay = document.createElement('p');
     scoreDisplay.innerHTML = 'Your final score is ' + score + '/5!';
@@ -186,7 +187,7 @@ function endQuiz() {
     createForm.appendChild(inputDisplay);
     createForm.appendChild(submitDisplay);
     quiz.append(scoreDisplay, createForm);
-
+    
     // set up event listener for a click on the submit button
     submitDisplay.addEventListener('click', submitScore); 
 }
