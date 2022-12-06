@@ -198,22 +198,27 @@ function endQuiz() {
     createForm.appendChild(inputDisplay);
     createForm.appendChild(submitDisplay);
     quiz.append(scoreDisplay, createForm);
+
+    // set up event listener for a click on the submit button
+    // let submitButton = document.getElementById('submit-button');
+    // submitButton.addEventListener('click', submitScore);
+    submitDisplay.addEventListener('click', submitScore);
 }
 
 
 // Create submit functionality with local storage
 
-// const submitScore = submitDisplay.addEventListener('click', () => {
+function submitScore(e) {
+    e.preventDefault();
+    console.log('clicked!');
+}
+
 // // need to collect user input and define as initials
-// need to e.prevent.default to stop form being 'submitted'
 // localStorage.setItem('storedScore', JSON.stringify(storedScore));
-// });
 
 
 // When submit button is clicked, 
 // save initials input and scores to local storage
 // Link to separate html file where local storage scores are shown 
-
-// Create separate html file to show scores 
 // Ranked from lowest number to highest number (array sort?)
 // Include buttons to go back and to clear high scores (delete from local storage)
