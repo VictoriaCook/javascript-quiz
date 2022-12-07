@@ -14,9 +14,18 @@ a {
     color: hotpink;
 }
 
+#view-high-scores {
+    display: inline;
+}
+
 #timer {
     float: right;
-    /* display: inline-block; */
+    display: inline;
+    margin: 0;
+}
+
+#timer p {
+    margin: 0;
 }
 
 button {
