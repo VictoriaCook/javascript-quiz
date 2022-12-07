@@ -15,9 +15,6 @@ startButton.innerHTML = 'Start Quiz';
 
 let incorrectMsgDisplay = document.getElementById('incorrect-msg');
 let correctMsgDisplay = document.getElementById('correct-msg');
-// document.getElementById('correct-msg').style.display = 'none'
-// const incorrectMsgDisplay = document.getElementById('incorrect-msg');
-// const correctMsgDisplay = document.getElementById('correct-msg');
 
 // Set up timer div
 
@@ -27,13 +24,9 @@ timer.appendChild(timeDisplay);
 timeDisplay.innerHTML = 'Time: 0';
 var secondsLeft = 75;
 
-// Set up score variables
+// Set up score variable
+
 let score = 0;
-// let initials
-// let storedScore = {
-//     name: initials.value,
-//     finalScore: score.value,
-// }
 
 // Set up array of objects for quiz content
 
@@ -127,9 +120,6 @@ function initQuiz() {
 // Create quiz functionality triggered by a click event on any multiple choice button
 
 function showQuestions(e) {
-    // let correctMsgDisplay = document.getElementById('correct-msg');
-    // let incorrectMsgDisplay = document.getElementById('incorrect-msg');
-
     // if user selected the wrong answer, remove seconds and show 'incorrect'
     if (e.target.innerHTML !== questionsArray[questionNumber].answer) {
         secondsLeft = secondsLeft - 10;
@@ -137,7 +127,6 @@ function showQuestions(e) {
     
     } else {
         correctMsgDisplay.style.display = 'block';
-        //correctMsgDisplay.setAttribute("style", "display: block");
         score++;
     }
     setTimeout(() => {
@@ -147,8 +136,6 @@ function showQuestions(e) {
 }
 
 function populateNextQuestion() {
-    // let correctMsgDisplay = document.getElementById('correct-msg');
-    // let incorrectMsgDisplay = document.getElementById('incorrect-msg');
     correctMsgDisplay.setAttribute("style", "display: none");
     incorrectMsgDisplay.setAttribute("style", "display: none");
     
@@ -177,12 +164,13 @@ function endQuiz() {
     buttonId1.remove();
     buttonId2.remove();
     buttonId3.remove();
-    // let incorrectMsgDisplay = document.getElementById('incorrect-msg');
-    // let correctMsgDisplay = document.getElementById('correct-msg');
+    
+    // remove correct and incorrect message displays
     correctMsgDisplay.remove();
     incorrectMsgDisplay.remove();
 
-    // set up quiz result page
+    // set up quiz result page. wrap in if statement? if score display != null?
+    
     titleDisplay.innerHTML = 'All done!';
     const scoreDisplay = document.createElement('p');
     scoreDisplay.innerHTML = 'Your final score is ' + score + '/5!';
@@ -192,9 +180,6 @@ function endQuiz() {
     inputDisplay.id = 'input-initials';
     const submitDisplay = document.createElement('input'); 
     submitDisplay.id = 'submit-button';
-    // const addAnchor = document.createElement('a');
-    // submitDisplay.appendChild(addAnchor);
-    // addAnchor.setAttribute('href', '/scores.html'); // up to here re adding link to submit button
     labelText.innerHTML = 'Enter initials: ';
     inputDisplay.setAttribute('type', 'text');
     submitDisplay.setAttribute('type', 'submit');
@@ -202,11 +187,9 @@ function endQuiz() {
     createForm.appendChild(inputDisplay);
     createForm.appendChild(submitDisplay);
     quiz.append(scoreDisplay, createForm);
-
+    
     // set up event listener for a click on the submit button
-    // let submitButton = document.getElementById('submit-button');
-    // submitButton.addEventListener('click', submitScore);
-    submitDisplay.addEventListener('click', submitScore); // window.location.href = 'scores.html'
+    submitDisplay.addEventListener('click', submitScore); 
 }
 
 
@@ -214,10 +197,8 @@ function endQuiz() {
 
 function submitScore(e) {
     e.preventDefault();
-    // console.log('clicked!');
     let initials = document.getElementById('input-initials').value;
     let scoreValue = score.toString();
-    // console.log(initials);
     let highScore = {
         initials ,
         scoreValue ,
@@ -227,4 +208,3 @@ function submitScore(e) {
     localStorage.setItem('highscores', JSON.stringify(existingHighScores));
     window.location.href = 'scores.html'
 }
-

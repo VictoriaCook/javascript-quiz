@@ -29,6 +29,10 @@ button {
     width: 200px;
 }
 
+button:hover {
+    background-color: #ffb3ff;
+}
+
 .mc-buttons {
     display: block;
 }
@@ -40,6 +44,10 @@ button {
     border-radius: 8px;
     border: none; 
     margin: 1%;
+}
+
+#submit-button:hover {
+    background-color: #ffb3ff;
 }
 
 #incorrect-msg {
