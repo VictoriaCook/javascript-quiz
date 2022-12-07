@@ -22,6 +22,7 @@ const timeDisplay = document.createElement('p');
 const timer = document.getElementById('timer');
 timer.appendChild(timeDisplay);
 timeDisplay.innerHTML = 'Time: 0';
+var timerInterval
 var secondsLeft = 75;
 
 // Set up score variable
@@ -70,7 +71,7 @@ startButton.addEventListener('click', initQuiz);
 // Create timer function
 
 function countdown() {
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
         secondsLeft--;
         timeDisplay.innerHTML = 'Time: ' + secondsLeft;
     
@@ -169,7 +170,7 @@ function endQuiz() {
     correctMsgDisplay.remove();
     incorrectMsgDisplay.remove();
 
-    // set up quiz result page. wrap in if statement? if score display != null?
+    // set up quiz result page
     
     titleDisplay.innerHTML = 'All done!';
     const scoreDisplay = document.createElement('p');
@@ -188,6 +189,9 @@ function endQuiz() {
     createForm.appendChild(submitDisplay);
     quiz.append(scoreDisplay, createForm);
     
+    // stop timer
+    clearInterval(timerInterval);
+
     // set up event listener for a click on the submit button
     submitDisplay.addEventListener('click', submitScore); 
 }
