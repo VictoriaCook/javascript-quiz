@@ -36,11 +36,11 @@ The quiz starts with a landing page inviting the user to start the timed quiz. O
 
 The following image shows the web application's appearance and functionality:
 
-![The Password Generator application displays a red button to "Generate Password".](./Assets/03-javascript-homework-demo.png)
+![The Multiple Choice JavaScript Quiz app displays a purple button to "Start Quiz".](./assets/04-web-apis-homework-demo.gif)
 
 ## Deployed URL
 
-The URL for the deployed page is here: https://victoriacook.github.io/[INSERT]
+The URL for the deployed page is here: https://victoriacook.github.io/javascript-quiz
 
 ---
 
